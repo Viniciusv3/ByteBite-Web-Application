@@ -52,5 +52,5 @@ jobs:
         with:
           app-name: 'bytebite'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_19BBCAF6FB5048B8A19F20E50E2A9B05 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_DE25A4A638694AAAA6DBC8FBCA483828 }}
           package: .
