@@ -16,7 +16,7 @@
 }
 
 body {
-    background-color: var(--background-color);
+    background-color: #f7f7f7;
 }
 
 
@@ -30,7 +30,7 @@ body {
     flex-direction: column;
     box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, 0.2);
     top: 0;
-    
+
 
 }
 
@@ -62,36 +62,12 @@ body {
     margin-right: 10px;
 }
 
-/* */
-
-/*header + navbar */
-/* .menu-content {
-
-    background-color: #f7f7f7;
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 80vw;
-    height: 10vh;
-    box-shadow: 0.3px 0.3px 0.3px rgba(25, 25, 25, 0.447)   
-}
-
-
-
-.menu-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    height: 10%;
-} */
-
 .container {
     position: absolute;
     right: 0;
     width: 90%;
     margin-right: 30px;
-    
+
     /* background: #5F818A; */
 }
 
@@ -138,7 +114,7 @@ body {
 }
 
 .active {
-    height: 30px;
+    /* height: 30px; */
     border-bottom: 3px solid;
     border-color: #c90a02;
     border-radius: 2px;
@@ -179,6 +155,14 @@ a {
     transition: all 300ms ease-in-out;
 }
 
+.all {
+
+    width: 80%;
+    margin: 40px auto;
+   
+
+}
+
 .menu ul li a:hover::after {
     width: 50%;
     left: 25%;
@@ -192,31 +176,40 @@ a {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: 5.0rem;
 }
 
 .kpi {
-    border: 1px solid var(--secundary-text);
+    border: 5px solid black;
     width: 10em;
     height: 8em;
     display: flex;
     flex-direction: column;
     text-align: center;
     border-radius: 10px;
-    color: var(--primary-text);
+    color: black;
     font-weight: bold;
     font-family: var(--font-family-subtitle);
     justify-content: space-around;
 }
+
 .kpiruim {
     color: red;
 }
+
 .kpiboa {
     color: rgb(26, 200, 26);
 }
+
 .datakpi span {
     font-size: 30px;
 }
-.alerta{
+
+#alerta {
+    margin-top: 21.5px;
+}
+
+.alerta {
     border-radius: 10px;
     width: 17em;
     height: 8em;
@@ -228,10 +221,42 @@ a {
     text-align: center;
     font-weight: bold;
 }
-.alerta img{
+
+.conteudo1 {
+    color: white;
+    /* border: solid green; */
+    margin: 5px;
+
+}
+
+.conteudo2 {
+    color: white;
+    /* border: solid green; */
+    margin: 5px;
+
+}
+
+.conteudo3 {
+    color: white;
+    /* border: solid green; */
+    margin: 5px;
+    justify-content: center;
+
+}
+
+.conteudo4 {
+    color: white;
+    /* border: solid green; */
+    margin: 5px;
+    justify-content: center;
+
+}
+
+.alerta img {
     width: 90px;
     height: 90px;
 }
+
 .btnAlert {
     background-color: var(--red-bytebite);
     color: var(--primary-text);
@@ -266,29 +291,30 @@ a {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    padding: 5px;
-    height: 35.5em;
 }
 
-#dataJanelas{
+.Janelas {
     margin: 0px;
     color: green;
     font-family: var(--font-family-title);
     font-size: 30px;
     font-weight: bold;
 }
+
 .areaJanelas {
     height: 10em;
     width: 100%;
     border: 2px solid var(--primary-text);
 }
-.areaGraficoRam{
+
+.areaGraficoRam {
     height: 30em;
     margin-top: 22px;
     margin-right: 20px;
 }
-.areaGraficoJanelas{
-    height: 30em;
+
+.areaGraficoJanelas {
+    /* height: 30em; */
     margin-top: 22px;
 }
 
@@ -318,7 +344,7 @@ a {
     border-radius: 10px;
 }
 
-.graficoJanelas{
+.graficoJanelas {
     height: 17em;
     width: 34em;
     background-color: #1b1a1a;
@@ -341,18 +367,28 @@ a {
     color: rgb(26, 200, 26);
 }
 
-.dadosTotem{
+.dadosTotem {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
 }
-.hardware{
+
+#esquerda_lado_dash,
+#direito_lado_dash {
+    /* border:solid red 3px; */
+    padding: 15px;
+}
+
+#Janelas{
+
+    color: white;
+
 }
 
 .hardware h1 {
     text-align: center;
     font-size: 24px;
-    color: var(--primary-text);
+    color: black;
     margin-bottom: 10px;
     margin-top: 20px;
     font-family: var(--font-family-subtitle);
@@ -374,4 +410,55 @@ a {
     font-weight: bold;
     background-color: #000000;
     color: var(--primary-text);
+}
+
+/* Dashboard inicial */
+
+.table-geral {
+    width: 100%;
+    height: 60vh;
+    display: flex;
+    padding: 20px;
+    align-items: center;
+
+}
+
+.metrica-1 {
+    width: 30%;
+    background-color: #c9c0c0b4;
+    border-radius: 50px;
+    height: 40vh;
+    text-align: center;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    transition: 500ms linear;
+
+}
+
+.metrica-1 h3 {
+    color: rgb(0, 0, 0);
+    font-size: 23px;
+    margin-top: 30px;
+
+}
+
+.metrica-1 label {
+    color: rgb(0, 0, 0);
+    font-size: 80px;
+}
+
+.metrica-1:hover {
+    background-color: #18161654;
+    border-radius: 50px;
+    text-align: center;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    transform: scale(1.01);
+}
+
+.metrica-2 {
+    width: 50%;
+    padding: 30px;
+    margin-left: 38vh;
+    box-shadow: 2px 2px 10px grey;
+    text-align: center;
+    margin-bottom: 20px;
 }

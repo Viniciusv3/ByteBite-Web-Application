@@ -18,9 +18,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js">
 </head>
 
-<body>
+<body onload="obterListaDeMaquinas()">
 
     <!-- Navbar -->
     <div class="side_bar">
@@ -36,27 +39,27 @@
         </div>
         <ul class="nav_list">
             <li>
-                <a href="dashboard.html">
+                <a href="../dashboardGeral.html">
                     <i class='bx bx-line-chart'></i>
                     <span class="links_name"> Dashboard</span>
                 </a>
                 <span class="tooltip">Dashboard</span>
             </li>
-            <li>
+            <li id="testeCadFun">
                 <a href="../cadastroFun.html">
                     <i class='bx bx-user-plus'></i>
                     <span class="links_name">Usuários</span>
                 </a>
                 <span class="tooltip">Usuários</span>
             </li>
-            <li>
+            <li id="testeCadMaq">
                 <a href="../cadMaquinas.html">
                     <i class='bx bx-border-all'></i>
                     <span class="links_name">Máquinas</span>
                 </a>
                 <span class="tooltip">Máquinas</span>
             </li>
-            <li>
+            <li id="testePerfilUser">
                 <a href="../telaPerfil.html">
                     <i class='bx bx-user-circle'></i>
                     <span class="links_name">Perfil</span>
@@ -64,11 +67,16 @@
                 <span class="tooltip">Perfil</span>
             </li>
             <li>
-                <a href="../index.html">
-                    <i class='bx bx-log-out'></i>
-                    <span class="links_name">Sair</span>
+                <a href="#" onclick="sair()">
+                    <i class='bx bx-log-out' onclick="sair()"></i>
+                    <span class="links_name" onclick="sair()">Sair</span>
                 </a>
-                <span class="tooltip">Sair</span>
+                <span class="tooltip" onclick="sair()">Sair</span>
+            </li>
+            <li>
+                <div>
+                    <img src="../assets/icons/favicon.png" class="side-footer">
+                </div>
             </li>
         </ul>
     </div>
@@ -78,86 +86,95 @@
         <div class="kpis">
             <div class="selecionarMaquina">
                 <select name="" id="sel_maquina" class="escolhaTotem">
-                    <option value="">TOTEM 01</option>
-                    <option value="">TOTEM 02</option>
-                    <option value="">TOTEM 03</option>
-                    <option value="">TOTEM 04</option>
+
                 </select>
             </div>
             <div class="kpi">
-                <span>TEMPERATURA PROCESSADOR NO DIA</span>
+                <span>TOP TEMPERATURA PROCESSADOR NO DIA</span>
                 <div class="datakpi kpiruim">
-                    <span>85ºC</span>
+                    <span id="TopTemperaturaCPU"></span>
                 </div>
             </div>
             <div class="kpi kpi2">
-                <span>MAIOR USO DO PROCESSADOR NO DIA</span>
+                <span>TOP USO DO PROCESSADOR NO DIA</span>
                 <div class="datakpi kpiboa">
-                    <span>60%</span>
+                    <span id="TopConsumoCPU"></span>
                 </div>
             </div>
             <div class="kpi kpi3">
-                <span>MAIOR USO DA MEMÓRIA RAM NO DIA</span>
+                <span>TOP USO DA MEMÓRIA RAM NO DIA</span>
                 <div class="datakpi kpiruim">
-                    <span>100%</span>
-                </div>
-            </div>
-            <div class="alerta">
-                <img src="../assets/images/alert_gif.gif" alt="">
-                <div class="alertBox">
-                    <span class="kpiruim">Temperatura acima da normalidade!</span>
-                    <button class="btnAlert">Verificar</button>
+                    <span id="TopConsumoRAM"></span>
                 </div>
             </div>
         </div>
-        
+
         <div class="dadosTotem">
-            <div class="hardware">
-                <h1>CPU</h1>
-                <div class="areaGrafico">
+            <div class="hardware" id="esquerda_lado_dash">
+                <h1>CONSUMO CPU</h1>
+                <div class="areaGrafico" >
                     <div class="grafico1">
-                        <canvas id="myChart"></canvas>
+                        <canvas id="ConsumoCPU"></canvas>
                     </div>
+                    <h1>TEMPERATURA CPU</h1>
                     <div class="grafico">
-                        <canvas id="temp1"></canvas>
+                        <canvas id="TemperaturaCPU"></canvas>
                     </div>
                 </div>
-            </div>
-            <div class="hardware">
-                <h1>DISCO</h1>
-                <div class="areaGrafico">
-                    <div class="grafico1">
-                        <canvas id="myChart1"></canvas>
-                    </div>
-                    <div class="grafico">
-                        <canvas id="temp2"></canvas>
-                    </div>
-                </div>
-            </div>
-            <div class="hardware">
-                <h1>MEMÓRIA RAM</h1>
-                <div class="areaGraficoRam">
-                    <div class="graficoRam">
-                        <canvas id="consumoRam"></canvas>
-                    </div>
-                </div>
-            </div>
-            <div class="hardware">
                 <h1>JANELAS DO SISTEMA</h1>
                 <div class="areaGraficoJanelas">
                     <div class="graficoJanelas">
-                       <h1 id="dataJanelas">2 JANELAS ATIVAS</h1>
+                        <h1 id="Janelas">2 JANELAS ATIVAS</h1>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="hardware" id="direito_lado_dash">
+                <h1>CONSUMO DISCO</h1>
+                <div class="areaGrafico">
+                    <div class="grafico1">
+                        <canvas id="ConsumoDISCO"></canvas>
+                    </div>
+                </div>
+                <h1>CONSUMO MEMÓRIA RAM</h1>
+                <div class="areaGrafico">
+                    <div class="grafico1">
+                        <canvas id="ConsumoRAM"></canvas>
+                    </div>
+                </div>
+                <H1>ALERTAS</H1>
+                <div id="alerta" class="grafico1">
+                    <div class="all">
+                        <div class="conteudo1">
+                            <span id="ID"></span>
+                        </div>
+                        <div class="conteudo2">
+                            <span id="Nivel"></span>
+                        </div>
+                        <div class="conteudo3">
+                            <span id="Descriçao"></span>
+                        </div>
+                        <div class="conteudo4">
+                            <span id="ValorLog"></span>
+                        </div>
+                        <div class="conteudo5" id="btnAlert">
+                            <button class="btnAlert" onclick="ir()">Verificar</button>
+                        </div>
                     </div>
                 </div>
             </div>
+
         </div>
-        
+
         <script src="dashboard.js"></script>
     </div>
 </body>
 
 </html>
+<script src="../js/validaLogin.js"></script>
 <script>
+    verificarTipoLogin();
     let btn = document.querySelector("#btn");
     let side_bar = document.querySelector(".side_bar");
 
@@ -165,4 +182,31 @@
         side_bar.classList.toggle("active");
     }
 
+</script>
+<script>
+    function sair() {
+        let timerInterval
+        Swal.fire({
+            title: 'Estamos te redirecionando!',
+            html: 'Sou fachado em  <b></b>  milliseconds.',
+            timer: 2000,
+            timerProgressBar: true,
+            didOpen: () => {
+                Swal.showLoading()
+                const b = Swal.getHtmlContainer().querySelector('b')
+                timerInterval = setInterval(() => {
+                    b.textContent = Swal.getTimerLeft()
+                }, 100)
+            },
+            willClose: () => {
+                clearInterval(timerInterval)
+            }
+        }).then((result) => {
+            /* Read more about handling dismissals below */
+            if (result.dismiss === Swal.DismissReason.timer) {
+                console.log('I was closed by the timer')
+                window.location.href = "../index.html"
+            }
+        })
+    }
 </script>
